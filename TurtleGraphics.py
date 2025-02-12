@@ -3,6 +3,11 @@
 #Date: 2/12/25
 #Assignment: Lab 4 (All Combined)
 
+def main():
+  print("\033[34mTurtleGraphics\033[0m")
+if __name__ == '__main__':
+    main()
+
 import turtle #needed generally but not in CodeHS
 # hideturtle() #hides the default turtle in CodeHS
 
