@@ -1,10 +1,13 @@
 #TurtleGraphics.py
-#Name:
-#Date:
-#Assignment:
+#Name: Brennan Wood
+#Date: 2/12/25
+#Assignment: Lab 4 (All Combined)
 
 import turtle #needed generally but not in CodeHS
-hideturtle() #hides the default turtle in CodeHS
+# hideturtle() #hides the default turtle in CodeHS
+
+kili = turtle.Turtle()
+kili.shape("turtle")
 
 # Drawing a square
 def drawSquare(kili, size):
@@ -14,7 +17,7 @@ def drawSquare(kili, size):
         
 # Drawing a polygon
 def drawPolygon(kili, sides):
-    for s in range(sides):
+    for i in range(sides):
         kili.forward(100)
         kili.right(360/sides)
         
@@ -28,22 +31,22 @@ def fillSquare(kili):
     
 # Filled square function    
 def fillCorner(kili, corner):
-    drawSquare(kili, 100)
-    if corner == 1:
+    drawSquare(kili,100)
+    if corner == "1":
         fillSquare(kili)
-    if corner == 2:
+    elif corner == "2":
         kili.up()
         kili.forward(50)
         kili.down()
         fillSquare(kili)
-    if corner == 3:
+    elif corner == "3":
         kili.up()
         kili.right(90)
         kili.forward(50)
         kili.left(90)
         kili.down()
         fillSquare(kili)
-    if corner == 4:
+    elif corner == "4":
         kili.up()
         kili.forward(50)
         kili.right(90)
@@ -51,29 +54,45 @@ def fillCorner(kili, corner):
         kili.left(90)
         kili.down()
         fillSquare(kili)
+    else:
+        kili.up()
+        kili.backward(100)
+        kili.write("Invalid corner!")
         
         
 # Squares in squares
+
+def smallerSquare(kili):
+    kili.up()
+    kili.forward(10)
+    kili.right(90)
+    kili.forward(10)
+    kili.left(90)
+    kili.down()
+    
 def squaresInSquares(kili, squares):
+    for i in range(squares):
+        size = 200
+        step = size-i*20
+        drawSquare(kili,step)
+        smallerSquare(kili)
     
     
     
 
-def main():
-    kili = turtle.Turtle()
+# asking the user to pick a function
+
+shape = input("Please select a turtle action (polygon, fillCorner, squaresInSquares): ")
+
+if shape == "polygon":
+    sides = input("how many sides?: ")
+    drawPolygon(kili, int(sides))
     
-    fillCorner(kili,4)
+if shape == "fillCorner":
+    corner = input("Which corner (1/2/3/4)?: ")
+    fillCorner(kili,corner)
     
-    # drawPolygon(kili,8)
+if shape == "squaresInSquares":
+    squares = input("How many squares?: ")
+    squaresInSquares(kili, int(squares))
     
-    # drawPolygon(myTurtle, 5) #draws a pentagon
-    # drawPolygon(myTurtle, 8) #draws an octogon
-
-    # fillCorner(myTurtle, 2) #draws a square with top right corner filled in.
-    # fillCorner(myTurtle, 3) #draws a square bottom left corner filled in.
-
-    # squaresInSquares(myTurtle, 5) #draws 5 concentric squares
-    # squaresInSquares(myTurtle, 3) #draws 3 concentric squares
-
-
-main()
